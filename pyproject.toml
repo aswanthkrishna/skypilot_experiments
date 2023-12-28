@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "axotol-skypilot"
+version = "0.1.0"
+description = "set of experiments to fine tune LLMs using axotol on public clouds accessed through skypilot"
+authors = ["Ashwanth Krishnan <aswanth.krshna@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "axotol_skypilot"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
