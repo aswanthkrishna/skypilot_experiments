@@ -1,0 +1,39 @@
+name: lit
+
+resources:
+    accelerators: T4
+    cloud: aws
+    use_spot: true
+    # spot_recovery: FAILOVER
+
+num_nodes: 1
+
+
+file_mounts:
+    /checkpoint:
+        name: ${BUCKET}
+        mode: MOUNT
+
+    ~/lit:
+        name: ${BUCKET} # NOTE: Fill in your bucket name for codes
+        source: examples/spot/lightning_cifar10
+        persistent: false
+        mode: COPY
+
+setup: |
+    set -e  # Fail if any command failed.
+
+    # Fill in your wandb key: copy from https://wandb.ai/authorize
+    echo export WANDB_API_KEY=[YOUR-WANDB-API-KEY] >> ~/.bashrc
+    cd ~/lit
+    pip3 install --upgrade pip
+    pip3 install -r requirements.txt
+
+run: |
+    cd ~/lit
+    python train.py --root_dir /checkpoint/ --resume --num_epochs 1000
+
+envs:
+    BUCKET: mixtral-checkpoints
+  
+  

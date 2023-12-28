@@ -9,6 +9,7 @@ packages = [{include = "axotol_skypilot"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+skypilot = {extras = ["aws"], version = "^0.4.1"}
 
 
 [build-system]

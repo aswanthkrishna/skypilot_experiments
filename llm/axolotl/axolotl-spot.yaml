@@ -9,7 +9,7 @@
 name: axolotl
 
 resources:
-  accelerators: V100
+  accelerators: T4
   cloud: aws # optional
   use_spot: True
 
